@@ -1,0 +1,73 @@
+.container{
+    width: 1000px;
+    height: 1100px;
+    border: 1px darkgray solid;
+}
+
+.grid{
+    width: 800px;
+    height: 800px;
+    background-color: lightgray;
+    border: transparent 5px;
+    padding: none;
+    border-radius: 25px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    display: flex;
+    
+}
+.grid div{
+    width: 190px;
+    height: 190px;
+    background-color: beige;
+    border: transparent;
+    border-radius: 25px;
+    text-align: center;
+    font-weight: bold;
+    font-size: 60px;
+    font-family: sans-serif;
+    line-height: 3;
+    margin: 5px;
+}
+.information{
+    width: 300px;
+    height: 100px;
+    background-color:lightsalmon;
+    border: transparent;
+    padding: none;
+    border-radius: 25px;
+    margin: 0 auto;
+    text-align: center;
+    text-rendering: optimizeLegibility;
+}
+.Title{
+    font-size: 65px;
+    font-weight: 200;
+    font-family: sans-serif;
+    text-align: center;
+    color:chocolate;
+}
+.Score{
+    font-size: 24px;
+    font-weight: 200;
+    font-family: sans-serif;
+}
+.Best{
+    font-size: 24px;
+    font-weight: 200;
+    font-family: sans-serif;
+}
+button{
+    border: none;
+    border-radius: 5px;
+    width: 250px;
+    height: 100px;
+    text-align: center;
+    margin-left: 700px;
+    font-size: 30px;
+    font-family: sans-serif;
+}
+
+
+
+
