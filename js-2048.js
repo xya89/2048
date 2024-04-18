@@ -2,8 +2,8 @@
 var gridElmt = document.querySelector('.grid');
 var scoreElmt = document.querySelector("#score");
 var bestElmt = document.querySelector('#best');
-console.log(scoreElmt);
-console.log(gridElmt);
+// console.log(scoreElmt);
+// console.log(gridElmt);
 
 //New Game
 var newGameBtn = document.querySelector('button');
@@ -28,11 +28,11 @@ function drawGrid(){
         var row = Math.floor(i / width);
 
         box = document.createElement('div');
-        box.setAttribute('index', i);
+        // box.setAttribute('index', i);
         box.setAttribute('x', row);
         box.setAttribute('y', col);
 
-        box.innerHTML = '';
+        box.textContent = '';
         gridElmt.appendChild(box);
     }
 
@@ -57,9 +57,33 @@ function generateNumber(){
 }
 
 drawGrid()
-console.log(gridElmt);
-var boxes = generateNumber();
+generateNumber();
 
+// get boxes coord -> array
+function boxCoord(){
+    //initialize a 2D array to store the box's coord
+    var arr = [];
+    for(var i=0;i<width;i++){
+        arr[i]=[];
+    }
+    //get box
+    var b = document.querySelectorAll('.grid div');
+    //iterate through each box, store the value of box to array[x][y]
+    b.forEach(function(box){
+        var x = parseInt(box.getAttribute('x'));
+        var y = parseInt(box.getAttribute('y'));
+        var val;
+        if(box.textContent != '') {
+            val = parseInt(box.textContent);
+        } else {
+            val = 0;
+        }
+        arr[x][y] = val;
+    });
+    return arr;
+}
+console.log(boxCoord());
+console.log(gridElmt);
 
 // Handle keyboard
 // callback dictionary - keymap
@@ -80,7 +104,6 @@ function keyBoardHandler(){
         action();
     })
 }
-
 function upHandler(){
     console.log("keyup!");
 }
@@ -94,33 +117,134 @@ function rightHandler(){
 
 }
 
-// keyBoardHandler();
-
-
-// test value arry
-for (var i =0;i<boxes.length;i++){
-    console.log("i: ",i);
-    if(boxes[i].textContent != ''){
-        var k=0;
-        var emptyBox = [];
-        while(k<=i){
-            if((i-k)%4==0 && boxes[k].textContent==''){
-                console.log('this is box k: ',boxes[k] );
-                emptyBox.push(boxes[k])
-                emptyBox.sort(function(a,b){
-                    return a.getAttribute('index').value - b.getAttribute('index').value
-                });
+// Evaluation Function
+// Evaluate Right
+function canMoveRight(){
+    var board = boxCoord();
+    for(var i= 3; i>=0; i--){
+        for(var j=2; j>=0; j--){
+            if(board[i][j] != 0){
+                if(board[i][j+1] == 0 || board[i][j+1] == board[i][j]){
+                    return true;
+                }
             }
-            console.log("k: ",k);
-            k++;
         }
-        console.log("first empty box:", emptyBox[0]);
-        console.log('textcontent is:',emptyBox[0].textContent);
-        emptyBox[0].textContent = 999
-        console.log(boxes[i]);
-        // TODO: fix when first box[i]: i=[0,4] the next box does not work!
     }
-
-    var value = boxes[i].textContent;
-
+    return false;
 }
+console.log(canMoveRight());
+
+// Evaluate Left 
+function canMoveLeft(){
+    var board = boxCoord();
+    for()
+}
+
+// Evaluate Top
+// Evaluate Bottom
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// // test value arry
+// for (var i =0;i<boxes.length;i++){
+//     console.log("i: ",i);
+//     if(boxes[i].textContent != ''){
+//         var k=0;
+//         var emptyBox = [];
+//         while(k<=i){
+//             if((i-k)%4==0 && boxes[k].textContent==''){
+//                 console.log('this is box k: ',boxes[k] );
+//                 emptyBox.push(boxes[k])
+//                 emptyBox.sort(function(a,b){
+//                     return a.getAttribute('index').value - b.getAttribute('index').value
+//                 });
+//             }
+//             console.log("k: ",k);
+//             k++;
+//         }
+//         console.log("first empty box:", emptyBox[0]);
+//         console.log('textcontent is:',emptyBox[0].textContent);
+//         emptyBox[0].textContent = 999
+//         console.log(boxes[i]);
+//         // TODO: fix when first box[i]: i=[0,4] the next box does not work!
+//     }
+
+//     var value = boxes[i].textContent;
+
+// determine if can move right
+// function canMoveRight(boxes){
+
+//     for(var i=3;i>=0; i--){
+//         for(var j=2; j>=0;j--){
+//             if(boxes.getAttribute('x'))
+        
+//     }
+
+// }
+
+
