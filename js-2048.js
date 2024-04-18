@@ -23,11 +23,19 @@ var box = [];
 // Draw grid
 function drawGrid(){
     for(var i=0; i<width*width;i++){
+        // "2D array to track box's relative location"
+        var col = i%width;
+        var row = Math.floor(i / width);
+
         box = document.createElement('div');
         box.setAttribute('index', i);
+        box.setAttribute('x', row);
+        box.setAttribute('y', col);
+
         box.innerHTML = '';
         gridElmt.appendChild(box);
     }
+
 }
 
 // Generate Number - Initailize the playground
@@ -49,6 +57,7 @@ function generateNumber(){
 }
 
 drawGrid()
+console.log(gridElmt);
 var boxes = generateNumber();
 
 
