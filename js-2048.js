@@ -159,13 +159,44 @@ function canMoveLeft(){
 
 // Evaluate Top
 // Condition: 
+function canMoveTop(){
+    var board = boxCoord();
+    for(i=3;i>=1;i--){
+        for(j=3;j>=0;j--){
+            //current box nonempty
+            if(board[i][j] != 0){
+                //check immediate top is empty or equal value
+                if(board[i-1][j] == 0 || board[i-1][j]== board[i][j]){
+                    return true;
+                }
+            }
+        }
+    }
+    return false; 
+}
 
 // Evaluate Bottom
+function canMoveBottom(){
+    var board = boxCoord();
+    for(i=0;i<=2;i++){
+        for(j=0;j<=3;j++){
+            //current box nonempty
+            if(board[i][j] != 0){
+                //check if immediate bottom is empty or equal value
+                if(board[i+1][j]== 0 || board[i+1][j] == board[i][j]){
+                    return true;
+                }
+            }
+        }
+    }
+    return false; 
+}
 
+// test if function logic is correct: 
 console.log("can move right: ",canMoveRight());
 console.log("can move left: ", canMoveLeft());
-console.log("can move top: ");
-console.log("can move bottom: ");
+console.log("can move top: ", canMoveTop());
+console.log("can move bottom: ", canMoveBottom());
 
 
 
