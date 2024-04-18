@@ -119,10 +119,14 @@ function rightHandler(){
 
 // Evaluation Function
 // Evaluate Right
+// Condition: 
+// 1. Right side value is equal
+// 2. immediate right's value is 0;
 function canMoveRight(){
     var board = boxCoord();
     for(var i= 3; i>=0; i--){
         for(var j=2; j>=0; j--){
+            //current box not empty
             if(board[i][j] != 0){
                 if(board[i][j+1] == 0 || board[i][j+1] == board[i][j]){
                     return true;
@@ -132,18 +136,36 @@ function canMoveRight(){
     }
     return false;
 }
-console.log(canMoveRight());
 
 // Evaluate Left 
+// Condition: 
+// 1. Left side value is equal 
+// 2. current boxes' left's value is 0;
 function canMoveLeft(){
     var board = boxCoord();
-    for()
+    for(i=3;i>=0;i--){
+        for(j=3;j>=1;j--){
+            //current box not empty
+            if(board[i][j] != 0){
+                //check if immediate left is empty and if left is equal value.
+                if(board[i][j-1] == 0 || board[i][j-1] == board[i][j]){
+                    return true;
+                }
+            }
+        }
+    }
+    return false;
 }
 
 // Evaluate Top
+// Condition: 
+
 // Evaluate Bottom
 
-
+console.log("can move right: ",canMoveRight());
+console.log("can move left: ", canMoveLeft());
+console.log("can move top: ");
+console.log("can move bottom: ");
 
 
 
