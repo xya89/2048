@@ -1,6 +1,8 @@
 # 2048 Game
 This is a simple implementation of the popular 2048 game using HTML, CSS, and JavaScript. The game is played on a 4x4 grid where tiles with numbers are combined to reach the 2048 tile.
-![Desktop2024 04 19-08 02 06 01-Trim-ezgif com-crop](https://github.com/xya89/2048/assets/73208606/10aea333-13ef-4e89-bb61-8505254e9285)
+
+![Desktop2024 04 19-08 02 06 01-Trim-ezgif com-crop (1)](https://github.com/xya89/2048/assets/73208606/3065b171-2d1a-4072-ae75-c58597259d75)
+
 
 ## Features
 Movement: Use the arrow keys (or WASD keys) to move the tiles in the desired direction.
