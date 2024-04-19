@@ -28,7 +28,8 @@ The game ends when there are no more possible moves or when a tile with a value 
 The main HTML file that contains the game grid and JavaScript scripts.
 ### style.css: 
 The CSS file for styling the game grid and tiles.
-### js-2048.js: The JavaScript file containing the game logic and event handlers.
+### js-2048.js: 
+The JavaScript file containing the game logic and event handlers.
 
 ## Credits
 This implementation is based on the original 2048 game created by Gabriele Cirulli. For more information about the original game, visit 2048 Game.
