@@ -181,7 +181,7 @@ function downHandler(board){
 
     if(canMoveDown(board) && !gameEnds(board)){
         console.log('Move down!');
-        var newBoard = moveDowm(board);
+        var newBoard = moveDown(board);
         console.log('value after moving down:', newBoard);
         clearBoard();
         generateNumber(newBoard);
@@ -297,11 +297,13 @@ function moveRight(board){
             if(j<3&&board[i][j] != 0 && board[i][j+1] == 0){
                 board[i][j+1] = board[i][j];
                 board[i][j] = 0;
+      
                 moveRight(board);
             }
             else if(j<3&&board[i][j] != 0 && board[i][j] == board[i][j+1]){
                 board[i][j+1] *=2;
                 board[i][j] = 0;
+                    
             }
         }
     }
@@ -342,7 +344,7 @@ function moveTop(board){
     return board;
 }
 //moveDown
-function moveDowm(board){
+function moveDown(board){
     for(var i=3;i>=0;i--){
         for(var j=3;j>=0;j--){
             if(i<3 && board[i][j] != 0 && board[i+1][j] == 0){
@@ -358,8 +360,6 @@ function moveDowm(board){
     }
     return board;
 }
-
-
 
 
 

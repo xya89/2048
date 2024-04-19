@@ -28,6 +28,7 @@
     font-family: sans-serif;
     line-height: 3;
     margin: 5px;
+    transition: all 1s ease;
 }
 .information{
     width: 300px;
