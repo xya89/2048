@@ -82,8 +82,9 @@ function boxCoord(){
     });
     return arr;
 }
-console.log(boxCoord());
-console.log(gridElmt);
+var masterBoard = boxCoord();
+console.log("Initial Board",masterBoard);
+// console.log(gridElmt);
 
 // Handle keyboard
 // callback dictionary - keymap
@@ -105,23 +106,53 @@ function keyBoardHandler(){
     })
 }
 function upHandler(){
-    console.log("keyup!");
+    if(canMoveTop()){
+        console.log('Move top!');
+        
+        console.log('value after moving top:', moveTop(masterBoard));
+    }
+    else{
+        console.log('canot move top!');
+    }
 }
 function downHandler(){
-
+    if(canMoveDown()){
+        console.log('Move Down!');
+        
+        console.log('value after moving left:', moveDowm(masterBoard));
+    }
+    else{
+        console.log('canot move Down!');
+    }
 }
 function leftHandler(){
-
+    if(canMoveLeft()){
+        console.log('Move left!');
+        
+        console.log('value after moving left:', moveLeft(masterBoard));
+    }
+    else{
+        console.log('canot move left!');
+    }
 }
 function rightHandler(){
-
+    if(canMoveRight()){
+        console.log('Move right!');
+        
+        console.log('value after moving right:', moveRight(masterBoard));
+   
+    }
+    else{
+        console.log('canot move right!');
+    }
 }
 
 // Evaluation Function
+// a box can move to a direction on the following condition: 
+// 1. immediate value is equal
+// 2. immediate value is 0;
+
 // Evaluate Right
-// Condition: 
-// 1. Right side value is equal
-// 2. immediate right's value is 0;
 function canMoveRight(){
     var board = boxCoord();
     for(var i= 3; i>=0; i--){
@@ -136,11 +167,7 @@ function canMoveRight(){
     }
     return false;
 }
-
 // Evaluate Left 
-// Condition: 
-// 1. Left side value is equal 
-// 2. current boxes' left's value is 0;
 function canMoveLeft(){
     var board = boxCoord();
     for(i=3;i>=0;i--){
@@ -156,9 +183,7 @@ function canMoveLeft(){
     }
     return false;
 }
-
 // Evaluate Top
-// Condition: 
 function canMoveTop(){
     var board = boxCoord();
     for(i=3;i>=1;i--){
@@ -174,9 +199,8 @@ function canMoveTop(){
     }
     return false; 
 }
-
-// Evaluate Bottom
-function canMoveBottom(){
+// Evaluate Down
+function canMoveDown(){
     var board = boxCoord();
     for(i=0;i<=2;i++){
         for(j=0;j<=3;j++){
@@ -196,10 +220,145 @@ function canMoveBottom(){
 console.log("can move right: ",canMoveRight());
 console.log("can move left: ", canMoveLeft());
 console.log("can move top: ", canMoveTop());
-console.log("can move bottom: ", canMoveBottom());
+console.log("can move bottom: ", canMoveDown());
+
+
+// moveright
+function moveRight(board){
+    for(var i=3;i>=0;i--){
+        for(var j=3;j>=0;j--){
+            if(j<3&&board[i][j] != 0 && board[i][j+1] == 0){
+                board[i][j+1] = board[i][j];
+                board[i][j] = 0;
+                moveRight(board);
+            }
+            else if(j<3&&board[i][j] != 0 && board[i][j] == board[i][j+1]){
+                board[i][j+1] *=2;
+                board[i][j] = 0;
+            }
+        }
+    }
+    return board;
+}
+
+// moveLeft
+function moveLeft(board){
+    for(var i=3;i>=0;i--){
+        for(var j=3;j>=0;j--){
+            if(j>0 && board[i][j] != 0 && board[i][j-1] == 0){
+                board[i][j-1] = board[i][j];
+                board[i][j] = 0;
+                moveLeft(board);
+            }
+            else if(j>0 && board[i][j] != 0 && board[i][j] == board[i][j-1]){
+                board[i][j-1] *=2;
+                board[i][j] = 0;
+            }
+        }
+    }
+    return board;
+}
+
+//moveTop
+function moveTop(board){
+    for(var i=3;i>=0;i--){
+        for(var j=3;j>=0;j--){
+            if(i>0 && board[i][j] != 0 && board[i-1][j] == 0){
+                board[i-1][j] = board[i][j];
+                board[i][j] = 0;
+                moveTop(board);
+            }
+            else if(i>0 && board[i][j] != 0 && board[i][j] == board[i-1][j]){
+                board[i-1][j] *=2;
+                board[i][j] = 0;
+            }
+        }
+    }
+    return board;
+}
+
+//moveDown
+function moveDowm(board){
+    for(var i=3;i>=0;i--){
+        for(var j=3;j>=0;j--){
+            if(i<3 && board[i][j] != 0 && board[i+1][j] == 0){
+                board[i+1][j] = board[i][j];
+                board[i][j] = 0;
+                moveDowm(board);
+            }
+            else if(i<3 && board[i][j] != 0 && board[i][j] == board[i+1][j]){
+                board[i+1][j] *=2;
+                board[i][j] = 0;
+            }
+        }
+    }
+    return board;
+}
+
+
+keyBoardHandler()
 
 
 
+
+
+
+
+
+
+
+
+
+// merge number:
+// if the a box can be moved to a direction:
+// if the value of the box === the value of the adjacent,
+// add two number and update the value of new box. 
+
+// function to detect if there is any blockage between two box on the same line;
+// function returns:
+// True --- no blockages between two boxes
+// False --- if there is any blockage.
+// Blockage: any in-between box has a non-zero value. 
+
+
+
+
+// // Move Right: 
+// function moveRight(){
+//     // get the boxes' coord
+//     var board = boxCoord();
+
+//     for(i=3; i>=0;i--){
+//         for(j=3; j>=0; j--){
+//             // if the current box has a value
+//             if(board[i][j] != 0){
+//                 // traverse from right most col
+//                 for(k=3;k>=j;k--){
+//                     // evaluate if the immdediate right is 0 or if there is blocking box;
+//                     if(board[i][k]==0 && noBlockHorizontal(i,j,k,board)){
+//                         board[i][k] = board[i][j];
+//                         board[i][j] == 0;
+//                         //TODO: Update Score
+//                         continue;
+//                     }
+//                     // evaluate if the immdediate right can merge with current
+//                     else if(board[i][k] == board[i][j] && noBlockHorizontal(i,j,k,board)){
+//                         // merge
+//                         board[i][k] += board[i][k];
+//                         //update current
+//                         board[i][j] = 0
+//                         //TODO: Update Score
+//                         continue;
+//                     }
+//                 }
+
+//             }
+//         }
+//     }
+//     console.log("move right!");
+//     return board; 
+// }
+// console.log("moveRight: ", moveRight());
 
 
 
