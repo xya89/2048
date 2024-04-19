@@ -350,7 +350,7 @@ function moveDown(board){
             if(i<3 && board[i][j] != 0 && board[i+1][j] == 0){
                 board[i+1][j] = board[i][j];
                 board[i][j] = 0;
-                moveDowm(board);
+                moveDown(board);
             }
             else if(i<3 && board[i][j] != 0 && board[i][j] == board[i+1][j]){
                 board[i+1][j] *=2;
