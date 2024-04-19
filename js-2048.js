@@ -104,39 +104,36 @@ function clearBoard() {
 // Condition 1: largest value is 2048
 // Condition 2: board is full
 function gameEnds(board){
-    var end = true;
+    if(!checkFull(board)){
+        return false;
+    }
     for(var i=0;i<board.length;i++){
         for(var j=0;j<board.length;j++){
-            if(board[i][j] == 0)
-            end = false;
-            return end; 
+            if(j < board.length - 1 && board[i][j] === board[i][j+1]){
+                generateNumber(board); 
+                return false;
+                
+            }
+            if(i < board.length - 1 && board[i][j] === board[i+1][j]){
+                generateNumber(board);
+                return false;
+            }
         }   
     }
-    if(end){
-        checkFull(board);
-    }else{
-        generateNumber(board);
-    }
+    alert("Game Over!");
+    return true;
 }
 
 function checkFull(board){
     var full = true; 
     for(var i=0;i<board.length-1;i++){
         for(var j=0;j<board.length-1;j++){
-            var topEqual = board[i][j] == board[i][j+1];
-            var downEqual = board[i][j] == board[i+1][j];
-            var rightEqual = board[i][j+1] == board[i+1][j+1];
-            var leftEqual = board[i+1][j] == board[i+1][j+1];
-            if(topEqual||downEqual||rightEqual||leftEqual){
-                full = false;
-                return full;
+            if(board[i][j] == 0){
+                return false;
             }
         }
     }
-    if(full){
-        alert('game over!');
-        return full; 
-    }
+    return true; 
 }
 
 // Handle keyboard
