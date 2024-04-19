@@ -45,6 +45,7 @@
     font-weight: 200;
     font-family: sans-serif;
     text-align: center;
+    font-weight: bolder;
     color:chocolate;
 }
 .Score{
@@ -71,6 +72,31 @@ button{
     font-family: sans-serif;
 }
 
+.number-2{
+    color: gray;
+}
+.number-4{
+    color: rgb(158, 158, 124);
+}
+.number-8{
+    color: lightcoral;
+}.number-16{
+    color: rgb(247, 158, 126);
+}.number-32{
+    color: rgb(248, 102, 124);
+}.number-64{
+    color: rgb(135, 56, 56);
+}.number-128{
+    color: lightsalmon;
+}.number-256{
+    color: lightyellow;
+}.number-512{
+    color: yellowgreen;
+}.number-1024{
+    color: rgb(175, 175, 11);
+}.number-2048{
+    color: yellow;
+}
 
 
 
