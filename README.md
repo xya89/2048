@@ -1,5 +1,6 @@
 # 2048 Game
 This is a simple implementation of the popular 2048 game using HTML, CSS, and JavaScript. The game is played on a 4x4 grid where tiles with numbers are combined to reach the 2048 tile.
+[Demo](https://2048-xi-jet.vercel.app/)
 
 ![Desktop2024 04 19-08 02 06 01-Trim-ezgif com-crop (1)](https://github.com/xya89/2048/assets/73208606/3065b171-2d1a-4072-ae75-c58597259d75)
 
