@@ -102,7 +102,6 @@ function clearBoard() {
 }
 
 
-
 // Detect if the game ends:
 // Condition 1: largest value is 2048
 // Condition 2: board is full
