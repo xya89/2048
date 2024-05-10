@@ -15,7 +15,7 @@ newGameBtn.addEventListener('click', function(){
 //OnLoad
 //Initialize Displays
 var score = 0;
-var bestScore = localStorage.getItem('bestScore') || 0;
+var bestScore = localStorage.getItem('bestScore') || 0; // keep best scores in localStorage
 const width = 4;
 var box = [];
 var masterBoard;
@@ -52,13 +52,13 @@ function createBoxes(){
     return arr;
 }
 
-// Generate Number - Initailize the playground
+
+// generateNumber(): generate two random number (2 and 4) to a random empty box.
 function generateNumber(board){
     
     if(checkFull(board)){
         return;
     }
-
 
     //Let two random box have the value.
     //generate two random index to assign value.
@@ -71,10 +71,8 @@ function generateNumber(board){
     else{
         generateNumber(board);
     }
-    //return board;
 }
-
-// render the number to the screen 
+// writeNumber(): update the matrix value to the div elements. 
 function writeNumber(board){
     for (let x = 0; x < board.length; x++) {
         for (let y = 0; y < board[x].length; y++) {
@@ -93,14 +91,15 @@ function writeNumber(board){
     }
 }
 
-// clear board
-// Function to clear the text content of the board
+
+// clearBoard(): clear the text content of the board
 function clearBoard() {
     var boxes = document.querySelectorAll('.grid div');
     boxes.forEach(function(box) {
         box.textContent = '';
     });
 }
+
 
 // Detect if the game ends:
 // Condition 1: board is full
@@ -129,7 +128,6 @@ function gameEnds(board){
     }
     return false
 }
-
 function checkFull(board){
     var full = true; 
     for(var i=0;i<board.length-1;i++){
@@ -142,6 +140,7 @@ function checkFull(board){
     return full; 
 }
 
+
 // Update Scores
 function updateScores(){
     scoreElmt.textContent = score;
@@ -151,6 +150,7 @@ function updateScores(){
 function saveBestScores(){
     localStorage.setItem('bestScore', bestScore);
 }
+
 
 // Handle keyboard
 // callback dictionary - keymap
@@ -175,7 +175,6 @@ function keyBoardHandler(board){
 
     })
 }
-
 function handleMove(board, direction){
     console.log(`Move ${direction}!`);
     // move(board, direction);
@@ -195,7 +194,7 @@ function handleMove(board, direction){
     writeNumber(board);
 }
 
-
+// Moving functions - key logics
 function move(matrix, direction) {
     const rows = matrix.length
     const cols = matrix[0].length
