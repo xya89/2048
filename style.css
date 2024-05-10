@@ -1,10 +1,11 @@
-html,body{
+html,
+body {
     height: 100%;
     margin: 0;
     padding: 0;
 }
 
-.container{
+.container {
     width: 100vw;
     height: 100vh;
     /* border: 1px darkgray solid; */
@@ -13,7 +14,7 @@ html,body{
 
 }
 
-.grid{
+.grid {
     width: 90%;
     max-width: 800px;
     height: 70vh;
@@ -26,7 +27,7 @@ html,body{
     display: flex;
 }
 
-.grid div{
+.grid div {
     width: 23%;
     height: 23%;
     background-color: beige;
@@ -36,15 +37,16 @@ html,body{
     font-weight: bold;
     font-size: 4.5vw;
     font-family: sans-serif;
-    line-height: 1.8;
+    line-height: 170%;
     margin: 1%;
     transition: all 1s ease;
 }
-.information{
+
+.information {
     width: 90%;
     max-width: 300px;
     height: 10vh;
-    background-color:lightsalmon;
+    background-color: lightsalmon;
     border: transparent;
     padding: none;
     border-radius: 25px;
@@ -52,29 +54,32 @@ html,body{
     text-align: center;
     text-rendering: optimizeLegibility;
 }
-.Title{
+
+.Title {
     font-size: 5vw;
     font-weight: 200;
     font-family: sans-serif;
     text-align: center;
     font-weight: bolder;
-    color:chocolate;
+    color: chocolate;
 }
 
-.Score{
+.Score {
     font-size: 1vw;
     font-weight: 200;
     font-family: sans-serif;
     line-height: 2;
     margin-top: 10px;
 }
-.Best{
+
+.Best {
     font-size: 1vw;
     font-weight: 200;
     font-family: sans-serif;
     margin-top: 10px;
 }
-button{
+
+button {
     border: none;
     border-radius: 5px;
     width: 90%;
@@ -91,31 +96,46 @@ button{
     display: block;
 }
 
-.number-2{
+.number-2 {
     color: gray;
 }
-.number-4{
+
+.number-4 {
     color: rgb(158, 158, 124);
 }
-.number-8{
+
+.number-8 {
     color: lightcoral;
-}.number-16{
-    color: rgb(247, 158, 126);
-}.number-32{
-    color: rgb(248, 102, 124);
-}.number-64{
-    color: rgb(135, 56, 56);
-}.number-128{
-    color: lightsalmon;
-}.number-256{
-    color: lightyellow;
-}.number-512{
-    color: yellowgreen;
-}.number-1024{
-    color: rgb(175, 175, 11);
-}.number-2048{
-    color: yellow;
 }
 
+.number-16 {
+    color: rgb(247, 158, 126);
+}
 
+.number-32 {
+    color: rgb(248, 102, 124);
+}
 
+.number-64 {
+    color: rgb(135, 56, 56);
+}
+
+.number-128 {
+    color: lightsalmon;
+}
+
+.number-256 {
+    color: rgb(224, 224, 42);
+}
+
+.number-512 {
+    color: yellowgreen;
+}
+
+.number-1024 {
+    color: rgb(175, 175, 11);
+}
+
+.number-2048 {
+    color: yellow;
+}

@@ -2,11 +2,6 @@
 var gridElmt = document.querySelector('.grid');
 var scoreElmt = document.querySelector("#score");
 var bestElmt = document.querySelector('#best');
-// console.log(scoreElmt);
-// console.log(gridElmt);
-
-// // import game logics
-// import * as gameLogic from './js-2048_js'
 
 //New Game
 var newGameBtn = document.querySelector('button');
@@ -107,7 +102,6 @@ function clearBoard() {
     });
 }
 
-
 // Detect if the game ends:
 // Condition 1: board is full
 // Condition 2: no adjacent cell has equal value
@@ -117,7 +111,7 @@ function gameEnds(board){
         //check if there are any adjacent equal value horizontally
         for(var i=0;i<board.length;i++){
             for(var j=0;j<board.length-1;j++){
-                if(board[i][j] === board[i][j+1]){
+                if(board[i][j] === board[i][j+1] || board[i][j] === 0){
                     return false;
                 }
             }   
@@ -125,7 +119,7 @@ function gameEnds(board){
         // Check if there are any adjacent equal values vertically
         for(var j = 0; j < board[0].length; j++){
             for(var i = 0; i < board.length - 1; i++){
-                if(board[i][j] === board[i+1][j]){
+                if(board[i][j] === board[i+1][j] || board[i][j] === 0){
                     return false;
                 }
             }
@@ -151,64 +145,38 @@ function checkFull(board){
 // Handle keyboard
 // callback dictionary - keymap
 const keyMap = {
-    'w': upHandler,
-    'a': leftHandler,
-    's': downHandler,
-    'd': rightHandler,
-    'ArrowUp': upHandler,
-    'ArrowLeft': leftHandler,
-    'ArrowDown': downHandler,
-    'ArrowRight': rightHandler
+    'w': 'up',
+    'a': 'left',
+    's': 'down',
+    'd': 'right',
+    'ArrowUp': 'up',
+    'ArrowLeft': 'left',
+    'ArrowDown': 'down',
+    'ArrowRight': 'right'
 }
 
 function keyBoardHandler(board){
     window.addEventListener('keydown',function(ev){
         if(!gameEnds(board)){        
-            const action = keyMap[ev.key];
-            action(board);
+            const direction = keyMap[ev.key];
+            if(direction){
+                handleMove(board, direction);
+            }
         }
 
     })
 }
 
-// Direction Handlers
-function upHandler(board){ 
-    
-    console.log('Move top!');
-    move(board, 'up');
-    console.log('value after moving top:', board);
+function handleMove(board, direction){
+    console.log(`Move ${direction}!`);
+    move(board, direction);
+    console.log(`Value after moving ${direction}: `, board);
     clearBoard();
     generateNumber(board);
     writeNumber(board);
+}
 
-  
-}
-function downHandler(board){
-    console.log('Move down!');
-    move(board, 'down');
-    console.log('value after moving down:', board);
-    clearBoard();
-    generateNumber(board);
-    writeNumber(board);
-}
-    
-function leftHandler(board){ 
-    console.log('Move left!');
-    move(board, 'left');
-    console.log('value after moving left:', board);
-    clearBoard();
-    generateNumber(board);
-    writeNumber(board);
-}
-function rightHandler(board){
-    
-    console.log('Move right!');
-    move(board, 'right');
-    console.log('value after moving right:', board);
-    clearBoard();
-    generateNumber(board);
-    writeNumber(board);
-}
+
 
 
 function move(matrix, direction) {
@@ -284,14 +252,9 @@ function move(matrix, direction) {
     }
 }
 
-
 masterBoard = createBoxes();
 generateNumber(masterBoard);
 generateNumber(masterBoard);
-
-console.log(masterBoard);
-
-
 writeNumber(masterBoard);
 keyBoardHandler(masterBoard);
 
