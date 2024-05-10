@@ -15,7 +15,7 @@ newGameBtn.addEventListener('click', function(){
 //OnLoad
 //Initialize Displays
 var score = 0;
-var bestScore = 0;
+var bestScore = localStorage.getItem('bestScore') || 0;
 const width = 4;
 var box = [];
 var masterBoard;
@@ -147,6 +147,10 @@ function updateScores(){
     scoreElmt.textContent = score;
     bestElmt.textContent = bestScore;
 }
+// Save Best Scores
+function saveBestScores(){
+    localStorage.setItem('bestScore', bestScore);
+}
 
 // Handle keyboard
 // callback dictionary - keymap
@@ -160,7 +164,6 @@ const keyMap = {
     'ArrowDown': 'down',
     'ArrowRight': 'right'
 }
-
 function keyBoardHandler(board){
     window.addEventListener('keydown',function(ev){
         if(!gameEnds(board)){        
@@ -183,6 +186,7 @@ function handleMove(board, direction){
         score += moveScore;
         if (score > bestScore) {
             bestScore = score;
+            saveBestScores();
         }
         updateScores();
     }
