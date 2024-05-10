@@ -40,6 +40,7 @@ body {
     line-height: 170%;
     margin: 1%;
     transition: all 1s ease;
+    overflow: hidden;
 }
 
 .information {
@@ -91,9 +92,21 @@ button {
     font-family: sans-serif;
     position: relative;
     top: 1%;
-    /* button centered */
-    margin: 0 auto;
     display: block;
+}
+
+.author {
+    position: absolute;
+    left: 70%;
+    bottom: 1%;
+}
+
+.repoLink {
+    position: absolute;
+    left: 70%;
+    bottom: 0.5%;
+    margin: 0 auto;
+    display: block
 }
 
 .number-2 {
