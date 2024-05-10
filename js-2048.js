@@ -109,27 +109,31 @@ function clearBoard() {
 
 
 // Detect if the game ends:
-// Condition 1: largest value is 2048
-// Condition 2: board is full
+// Condition 1: board is full
+// Condition 2: no adjacent cell has equal value
 function gameEnds(board){
-    if(!checkFull(board)){
-        return false;
-    }
-    for(var i=0;i<board.length;i++){
-        for(var j=0;j<board.length;j++){
-            if(j < board.length - 1 && board[i][j] === board[i][j+1]){
-                generateNumber(board); 
-                return false;
-                
+    
+    if (checkFull(board)){
+        //check if there are any adjacent equal value horizontally
+        for(var i=0;i<board.length;i++){
+            for(var j=0;j<board.length-1;j++){
+                if(board[i][j] === board[i][j+1]){
+                    return false;
+                }
+            }   
+        }
+        // Check if there are any adjacent equal values vertically
+        for(var j = 0; j < board[0].length; j++){
+            for(var i = 0; i < board.length - 1; i++){
+                if(board[i][j] === board[i+1][j]){
+                    return false;
+                }
             }
-            if(i < board.length - 1 && board[i][j] === board[i+1][j]){
-                generateNumber(board);
-                return false;
-            }
-        }   
+        }
+        alert("Game Over!");
+        return true;
     }
-    alert("Game Over!");
-    return true;
+    return false
 }
 
 function checkFull(board){
@@ -159,9 +163,11 @@ const keyMap = {
 
 function keyBoardHandler(board){
     window.addEventListener('keydown',function(ev){
-        if (checkFull(board) ===  true) alert('game over');
-        const action = keyMap[ev.key];
-        action(board);
+        if(!gameEnds(board)){        
+            const action = keyMap[ev.key];
+            action(board);
+        }
+
     })
 }
 
