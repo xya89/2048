@@ -15,10 +15,10 @@ newGameBtn.addEventListener('click', function(){
 //OnLoad
 //Initialize Displays
 var score = 0;
+var bestScore = 0;
 const width = 4;
 var box = [];
 var masterBoard;
-
 
 // Create boxes
 function createBoxes(){
@@ -142,6 +142,12 @@ function checkFull(board){
     return full; 
 }
 
+// Update Scores
+function updateScores(){
+    scoreElmt.textContent = score;
+    bestElmt.textContent = bestScore;
+}
+
 // Handle keyboard
 // callback dictionary - keymap
 const keyMap = {
@@ -169,19 +175,27 @@ function keyBoardHandler(board){
 
 function handleMove(board, direction){
     console.log(`Move ${direction}!`);
-    move(board, direction);
+    // move(board, direction);
     console.log(`Value after moving ${direction}: `, board);
+
+    const moveScore = move(board, direction);
+    if (moveScore > 0) {
+        score += moveScore;
+        if (score > bestScore) {
+            bestScore = score;
+        }
+        updateScores();
+    }
     clearBoard();
     generateNumber(board);
     writeNumber(board);
 }
 
 
-
-
 function move(matrix, direction) {
     const rows = matrix.length
     const cols = matrix[0].length
+    let score = 0;
 
     function inRange(i, j) {
         return i >= 0 && i < rows && j >= 0 && j < cols;
@@ -224,6 +238,7 @@ function move(matrix, direction) {
         else if (matrix[i][j] === nextValue) {
             matrix[i][j] *= 2;
             matrix[nextI][nextJ] = 0;
+            score += matrix[i][j];
         }
         const [ni, nj] = nexts[direction](i, j);
         cal(ni, nj)
@@ -250,6 +265,7 @@ function move(matrix, direction) {
             cal(i, cols - 1);
         }
     }
+    return score;
 }
 
 masterBoard = createBoxes();
@@ -257,7 +273,7 @@ generateNumber(masterBoard);
 generateNumber(masterBoard);
 writeNumber(masterBoard);
 keyBoardHandler(masterBoard);
-
+updateScores();
 
 
 // Obsolete Logics
